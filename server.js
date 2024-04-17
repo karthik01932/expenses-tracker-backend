@@ -71,7 +71,7 @@ Forgotpassword.belongsTo(User);
 User.hasMany(Download);
 Download.belongsTo(User);
 
-sequelize.sync({force: true})
+sequelize.sync()
   .then(result => {
     // console.log(result);
     app.listen(process.env.PORT || 3000);

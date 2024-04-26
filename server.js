@@ -3,7 +3,7 @@ const path = require('path');
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const helmet= require('helmet');
+// const helmet= require('helmet');
 const compression = require('compression');
 // const morgan= require('morgan');
 
@@ -28,13 +28,12 @@ const dotenv = require('dotenv');
 // get config vars
 dotenv.config();
 
-
 app.use(cors());
-app.use(helmet());
+// app.use(helmet());
 app.use(compression());
 // app.use(morgan('combined'))
 
-app.set('views', 'views');
+app.set('public', 'public');
 
 const userRoutes=require('./routes/user');
 const expenseRoutes=require('./routes/expense');
@@ -52,9 +51,11 @@ app.use('/purchase', purchaseRoutes);
 app.use('/premium', premiumFeatureRoutes);
 app.use('/password', resetPasswordRoutes);
 
+
+
 app.use((req,res)=>{
   console.log(req.url);
-  res.sendFile(path.join(__dirname,`views/${req.url}`));
+  res.sendFile(path.join(__dirname,`public/${req.url}`));
 })
 
 
